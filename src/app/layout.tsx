@@ -1,14 +1,10 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Red_Hat_Display } from 'next/font/google'
+import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const redHatDisplay = Red_Hat_Display({
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  weight: ['400', '500', '700'],
 })
 
 export const metadata: Metadata = {
@@ -22,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${redHatDisplay.className} ${redHatDisplay.className} bg-background-primary text-content-body antialiased`}
       >
         {children}
       </body>
