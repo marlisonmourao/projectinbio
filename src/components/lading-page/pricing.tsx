@@ -3,7 +3,7 @@ import Button from '../ui/button'
 
 export function Pricing() {
   return (
-    <div className="my-[150px] flex flex-col items-start gap-14">
+    <div className="my-[150px] flex flex-col items-center gap-14">
       <div className="flex flex-col items-center gap-6">
         <h3 className="text-4xl font-bold text-white">
           Um valor acessível para todos
