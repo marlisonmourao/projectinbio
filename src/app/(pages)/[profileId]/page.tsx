@@ -6,8 +6,10 @@ import Link from 'next/link'
 
 export default async function ProfilePage({
   params,
-}: { params: { profileId: string } }) {
-  const profileId = await params.profileId
+}: {
+  params: Promise<{ profileId: string }>
+}) {
+  const profileId = (await params).profileId
 
   return (
     <div className="relative h-screen flex p-24 overflow-hidden">
