@@ -1,8 +1,12 @@
 import Button from '@/components/ui/button'
+import type { ProfileData } from '@/server/get-profile-data'
 import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
+import Link from 'next/link'
 import { EditSocialLinks } from './edit-social-links'
 
-export default function UserCard() {
+export default function UserCard({
+  profileData,
+}: { profileData?: ProfileData }) {
   const icons = [Github, Instagram, Linkedin, Twitter]
 
   return (
@@ -29,17 +33,47 @@ export default function UserCard() {
         <span className="uppercase text-xs font-medium">Links</span>
 
         <div className="flex gap-3">
-          {icons.map((Icon, index) => (
-            <button
-              key={index.toString()}
-              type="button"
-              className="p-3 rounded-xl bg-[#1e1e1e] hover:bg-[#2e2e2e]"
+          {profileData?.socialMidias?.github && (
+            <Link
+              href={profileData?.socialMidias?.github}
+              target="_blank"
+              className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#E2E2E2]"
             >
-              <Icon />
-            </button>
-          ))}
+              <Github />
+            </Link>
+          )}
 
-          <EditSocialLinks />
+          {profileData?.socialMidias?.linkedin && (
+            <Link
+              href={profileData?.socialMidias?.linkedin}
+              target="_blank"
+              className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#E2E2E2]"
+            >
+              <Linkedin />
+            </Link>
+          )}
+
+          {profileData?.socialMidias?.instagram && (
+            <Link
+              href={profileData?.socialMidias?.instagram}
+              target="_blank"
+              className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#E2E2E2]"
+            >
+              <Instagram />
+            </Link>
+          )}
+
+          {profileData?.socialMidias?.twitter && (
+            <Link
+              href={profileData?.socialMidias?.twitter}
+              target="_blank"
+              className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#E2E2E2]"
+            >
+              <Twitter />
+            </Link>
+          )}
+
+          <EditSocialLinks socialMidias={profileData?.socialMidias} />
         </div>
       </div>
 

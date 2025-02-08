@@ -8,14 +8,23 @@ import Button from '../ui/button'
 import Input from '../ui/input'
 import { Modal } from '../ui/modal'
 
-export function EditSocialLinks() {
+export function EditSocialLinks({
+  socialMidias,
+}: {
+  socialMidias?: {
+    github: string
+    linkedin: string
+    instagram: string
+    twitter: string
+  }
+}) {
+  const [github, setGithub] = useState(socialMidias?.github || '')
+  const [linkedin, setLinkedin] = useState(socialMidias?.linkedin || '')
+  const [instagram, setInstagram] = useState(socialMidias?.instagram || '')
+  const [twitter, setTwitter] = useState(socialMidias?.twitter || '')
+
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isSavingSocialLinks, setIsSavingSocialLinks] = useState(false)
-
-  const [github, setGithub] = useState('')
-  const [linkedin, setLinkedin] = useState('')
-  const [instagram, setInstagram] = useState('')
-  const [twitter, setTwitter] = useState('')
 
   const { profileId } = useParams<{ profileId: string }>()
 
