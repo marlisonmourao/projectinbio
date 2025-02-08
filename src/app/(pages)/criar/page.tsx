@@ -1,7 +1,6 @@
 import { Header } from '@/components/lading-page/header'
-import Button from '@/components/ui/button'
-import Input from '@/components/ui/input'
 import { Rocket } from 'lucide-react'
+import { CreateLinkForm } from './create-link-form'
 
 export default function Criar() {
   return (
@@ -14,16 +13,7 @@ export default function Criar() {
           <Rocket className="size-10" />
         </div>
 
-        <form className="flex items-center w-full gap-2">
-          <span className="text-white">projectinbio.com/</span>
-
-          <Input />
-          <Button className="w-[126px]">Criar</Button>
-        </form>
-
-        <div>
-          <span className="text-accent-pink">Erro de exemplo</span>
-        </div>
+        <CreateLinkForm />
       </div>
     </div>
   )
