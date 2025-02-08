@@ -1,6 +1,6 @@
 import { ProjectCard } from '@/components/commons/project-card'
 import { TotalVisits } from '@/components/commons/total-visits'
-import UserCard from '@/components/commons/user-card'
+import UserCard from '@/components/user-card/user-card'
 import { auth } from '@/lib/auth'
 import { getDownloadUrlFromPath } from '@/lib/firebase'
 import { getProfileData, getProfileProjects } from '@/server/get-profile-data'

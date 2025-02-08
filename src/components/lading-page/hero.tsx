@@ -1,5 +1,5 @@
-import UserCard from '@/components/commons/user-card'
 import Input from '@/components/ui/input'
+import UserCard from '@/components/user-card/user-card'
 import { ProjectCard } from '../commons/project-card'
 import { TotalVisits } from '../commons/total-visits'
 import Button from '../ui/button'
