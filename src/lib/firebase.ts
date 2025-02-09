@@ -6,7 +6,7 @@ import 'server-only'
 
 // Certificado do Firebase
 const decodedPrivateKey = Buffer.from(
-  env.FIREBASE_PRIVATE_KEY as string,
+  env.FIREBASE_PRIVATE_KEY,
   'base64'
 ).toString('utf8')
 
