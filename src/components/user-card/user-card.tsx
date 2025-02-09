@@ -1,14 +1,14 @@
 import Button from '@/components/ui/button'
+import { formatUrl } from '@/lib/utils'
 import type { ProfileData } from '@/server/get-profile-data'
-import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
+import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 import Link from 'next/link'
+import { AddCustomLink } from './add-custom-link'
 import { EditSocialLinks } from './edit-social-links'
 
 export default function UserCard({
   profileData,
 }: { profileData?: ProfileData }) {
-  const icons = [Github, Instagram, Linkedin, Twitter]
-
   return (
     <div className="w-[348px] flex flex-col gap-5 items-center p-5 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48 ">
@@ -79,16 +79,36 @@ export default function UserCard({
 
       <div className="flex flex-col gap-3 w-full h-44">
         <div className="w-full flex flex-col items-center gap-3">
-          <Button className="w-full">Template SaaS - Compre agora</Button>
-
-          <button
-            type="button"
-            className="p-3 rounded-xl bg-[#1e1e1e] hover:bg-[#2e2e2e]"
-          >
-            <Plus />
-          </button>
+          {profileData?.link1 && (
+            <Link
+              href={formatUrl(profileData?.link1.url)}
+              target="_blank"
+              className="w-full"
+            >
+              <Button className="w-full">{profileData?.link1.title}</Button>
+            </Link>
+          )}
+          {profileData?.link2 && (
+            <Link
+              href={formatUrl(profileData?.link2.url)}
+              target="_blank"
+              className="w-full"
+            >
+              <Button className="w-full">{profileData?.link2.title}</Button>
+            </Link>
+          )}
+          {profileData?.link3 && (
+            <Link
+              href={formatUrl(profileData?.link3.url)}
+              target="_blank"
+              className="w-full"
+            >
+              <Button className="w-full">{profileData?.link3.title}</Button>
+            </Link>
+          )}
         </div>
       </div>
+      <AddCustomLink />
     </div>
   )
 }

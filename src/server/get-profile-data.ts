@@ -1,5 +1,6 @@
 'use server'
 
+import type { Link } from '@/app/actions/add-custom-link'
 import { db } from '@/lib/firebase'
 
 export type ProfileData = {
@@ -12,6 +13,9 @@ export type ProfileData = {
     instagram: string
     twitter: string
   }
+  link1?: Link
+  link2?: Link
+  link3?: Link
   updatedAt?: number
 }
 

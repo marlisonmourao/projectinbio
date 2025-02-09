@@ -1,5 +1,6 @@
 'use client'
 
+import { formatUrl } from '@/lib/utils'
 import type { ProjectData } from '@/server/get-profile-data'
 import Link from 'next/link'
 
@@ -10,10 +11,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ isOwner, img, project }: ProjectCardProps) {
-  const projectUrl = project.projectUrl
-  const formattedUrl = projectUrl.startsWith('http')
-    ? projectUrl
-    : `https://${projectUrl}`
+  const formattedUrl = formatUrl(project.projectUrl)
 
   function handleClick() {
     console.log('depois')
