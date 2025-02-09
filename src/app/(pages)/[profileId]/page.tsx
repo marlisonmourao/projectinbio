@@ -1,3 +1,4 @@
+import { increaseProfileVisits } from '@/app/actions/increase-profile-visits'
 import { ProjectCard } from '@/components/commons/project-card'
 import { TotalVisits } from '@/components/commons/total-visits'
 import UserCard from '@/components/user-card/user-card'
@@ -24,6 +25,10 @@ export default async function ProfilePage({
   }
 
   const isOwner = profileData.userId === session?.user?.id
+
+  if (!isOwner) {
+    await increaseProfileVisits(profileId)
+  }
 
   const projects = await getProfileProjects(profileId)
 
@@ -54,10 +59,11 @@ export default async function ProfilePage({
 
         {isOwner && <NewProjects profileId={profileId} />}
       </div>
-
-      <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
-        <TotalVisits />
-      </div>
+      {isOwner && (
+        <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
+          <TotalVisits totalVisits={profileData.totalVisits} />
+        </div>
+      )}
     </div>
   )
 }

@@ -29,11 +29,12 @@ export async function createProject(formData: FormData) {
 
   try {
     await db
-      .collection('projects')
+      .collection('profiles')
       .doc(profileId)
       .collection('projects')
       .doc(generateId)
       .set({
+        id: generateId,
         projectName,
         projectDescription,
         projectUrl,
