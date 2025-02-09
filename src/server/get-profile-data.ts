@@ -7,6 +7,9 @@ export type ProfileData = {
   userId: string
   totalVisits: number
   createdAt: number
+  name: string
+  description: string
+  imagePath?: string
   socialMidias?: {
     github: string
     linkedin: string

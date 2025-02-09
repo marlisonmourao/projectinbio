@@ -1,19 +1,29 @@
 import Button from '@/components/ui/button'
+import { getDownloadUrlFromPath } from '@/lib/firebase'
 import { formatUrl } from '@/lib/utils'
 import type { ProfileData } from '@/server/get-profile-data'
 import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 import Link from 'next/link'
 import { AddCustomLink } from './add-custom-link'
 import { EditSocialLinks } from './edit-social-links'
+import { EditUserCard } from './edit-user-card'
 
-export default function UserCard({
+export default async function UserCard({
+  isOwner,
   profileData,
-}: { profileData?: ProfileData }) {
+}: {
+  isOwner: boolean
+  profileData: ProfileData
+}) {
   return (
     <div className="w-[348px] flex flex-col gap-5 items-center p-5 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48 ">
         <img
-          src="https://github.com/marlisonmourao.png"
+          src={
+            profileData.imagePath
+              ? await getDownloadUrlFromPath(profileData.imagePath)
+              : 'https://robohash.org/default-avatar.png'
+          }
           alt=""
           className="rounded-full object-cover w-full h-full"
         />
@@ -22,11 +32,13 @@ export default function UserCard({
       <div className="flex flex-col gap-2 w-full">
         <div className="flex gap-2">
           <span className="text-3xl font-bold min-w-0 overflow-x-hidden">
-            Marlison Mourão
+            {profileData?.name}
           </span>
+
+          {isOwner && <EditUserCard profileData={profileData} />}
         </div>
 
-        <p className="opacity-40">"Eu faço produtos para a internet"</p>
+        <p className="opacity-40">{profileData?.description}</p>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
@@ -73,11 +85,13 @@ export default function UserCard({
             </Link>
           )}
 
-          <EditSocialLinks socialMidias={profileData?.socialMidias} />
+          {isOwner && (
+            <EditSocialLinks socialMidias={profileData?.socialMidias} />
+          )}
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 w-full h-44">
+      <div className="flex flex-col gap-3 w-full min-h-44">
         <div className="w-full flex flex-col items-center gap-3">
           {profileData?.link1 && (
             <Link
@@ -106,9 +120,9 @@ export default function UserCard({
               <Button className="w-full">{profileData?.link3.title}</Button>
             </Link>
           )}
+          {isOwner && <AddCustomLink />}
         </div>
       </div>
-      <AddCustomLink />
     </div>
   )
 }

@@ -29,7 +29,7 @@ export async function compressFile(files: File[]) {
 }
 
 async function compressImage(file: File): Promise<File> {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     imageCompression(file, {
       maxSizeMB: 0.2, // 200kb
       maxWidthOrHeight: 900,
@@ -43,4 +43,18 @@ async function compressImage(file: File): Promise<File> {
 
 export function formatUrl(url: string) {
   return url.startsWith('http') ? url : `https://${url}`
+}
+
+export function triggerImageInput(id: string) {
+  document.getElementById(id)?.click()
+}
+
+export function handleImageInput(e: React.ChangeEvent<HTMLInputElement>) {
+  const file = e.target.files?.[0] ?? null
+  if (file) {
+    const imageUrl = URL.createObjectURL(file)
+    return imageUrl
+  }
+
+  return null
 }
