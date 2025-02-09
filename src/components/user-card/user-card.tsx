@@ -2,7 +2,7 @@ import Button from '@/components/ui/button'
 import { getDownloadUrlFromPath } from '@/lib/firebase'
 import { formatUrl } from '@/lib/utils'
 import type { ProfileData } from '@/server/get-profile-data'
-import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
+import { Github, Instagram, Linkedin, Plus, Twitter } from 'lucide-react'
 import Link from 'next/link'
 import { AddCustomLink } from './add-custom-link'
 import { EditSocialLinks } from './edit-social-links'
@@ -12,19 +12,21 @@ export default async function UserCard({
   isOwner,
   profileData,
 }: {
-  isOwner: boolean
-  profileData: ProfileData
+  isOwner?: boolean
+  profileData?: ProfileData
 }) {
+  const icons = [Github, Instagram, Linkedin, Twitter, Plus]
+
   return (
     <div className="w-[348px] flex flex-col gap-5 items-center p-5 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48 ">
         <img
           src={
-            profileData.imagePath
+            profileData?.imagePath
               ? await getDownloadUrlFromPath(profileData.imagePath)
               : 'https://robohash.org/default-avatar.png'
           }
-          alt=""
+          alt="Profile-image"
           className="rounded-full object-cover w-full h-full"
         />
       </div>
@@ -32,13 +34,17 @@ export default async function UserCard({
       <div className="flex flex-col gap-2 w-full">
         <div className="flex gap-2">
           <span className="text-3xl font-bold min-w-0 overflow-x-hidden">
-            {profileData?.name}
+            {profileData?.name || 'John Doe'}
           </span>
 
-          {isOwner && <EditUserCard profileData={profileData} />}
+          {isOwner && (
+            <EditUserCard profileData={profileData ?? ({} as ProfileData)} />
+          )}
         </div>
 
-        <p className="opacity-40">{profileData?.description}</p>
+        <p className="opacity-40">
+          {profileData?.description ?? 'Conteúdos para a internet'}
+        </p>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
@@ -85,6 +91,18 @@ export default async function UserCard({
             </Link>
           )}
 
+          {!profileData &&
+            icons.map((Icon, index) => (
+              <button
+                type="button"
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                key={index}
+                className="p-3 rounded-xl bg-[#1E1E1E] hover:bg-[#2E2E2E]"
+              >
+                <Icon />
+              </button>
+            ))}
+
           {isOwner && (
             <EditSocialLinks socialMidias={profileData?.socialMidias} />
           )}
@@ -121,6 +139,15 @@ export default async function UserCard({
             </Link>
           )}
           {isOwner && <AddCustomLink />}
+
+          {!profileData && (
+            <button
+              type="button"
+              className="p-3 rounded-xl bg-[#1e1e1e] hover:bg-[#2e2e2e]"
+            >
+              <Plus />
+            </button>
+          )}
         </div>
       </div>
     </div>
