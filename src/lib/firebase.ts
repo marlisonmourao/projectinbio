@@ -1,3 +1,4 @@
+import { env } from '@/env'
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { getStorage } from 'firebase-admin/storage'
@@ -5,13 +6,13 @@ import 'server-only'
 
 // Certificado do Firebase
 const decodedPrivateKey = Buffer.from(
-  process.env.FIREBASE_PRIVATE_KEY as string,
+  env.FIREBASE_PRIVATE_KEY as string,
   'base64'
 ).toString('utf8')
 
 export const firebaseCert = cert({
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  projectId: env.FIREBASE_PROJECT_ID,
+  clientEmail: env.FIREBASE_CLIENT_EMAIL,
   privateKey: decodedPrivateKey,
 })
 
@@ -19,7 +20,7 @@ export const firebaseCert = cert({
 if (!getApps().length) {
   initializeApp({
     credential: firebaseCert,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    storageBucket: env.FIREBASE_STORAGE_BUCKET,
   })
 }
 

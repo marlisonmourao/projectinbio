@@ -1,22 +1,23 @@
 import 'server-only'
 
+import { env } from '@/env'
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { getStorage } from 'firebase-admin/storage'
 
 // Certifcado
 
-if (!process.env.FIREBASE_PRIVATE_KEY) {
+if (!env.FIREBASE_PRIVATE_KEY) {
   throw new Error('FIREBASE_PRIVATE_KEY is not defined')
 }
 
-const decodedKey = process.env.FIREBASE_PRIVATE_KEY
-  ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+const decodedKey = env.FIREBASE_PRIVATE_KEY
+  ? env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
   : undefined
 
 export const firebaseCert = cert({
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  projectId: env.FIREBASE_PROJECT_ID,
+  clientEmail: env.FIREBASE_CLIENT_EMAIL,
   privateKey: decodedKey,
 })
 
@@ -24,7 +25,7 @@ export const firebaseCert = cert({
 if (!getApps().length) {
   initializeApp({
     credential: firebaseCert,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    storageBucket: env.FIREBASE_STORAGE_BUCKET,
   })
 }
 
