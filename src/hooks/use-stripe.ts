@@ -39,7 +39,21 @@ export function useStripe() {
     }
   }
 
+  async function handleCrateStripePortal() {
+    const response = await fetch('/api/stripe/create-portal', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+
+    const data = await response.json()
+
+    window.location.href = data.url
+  }
+
   return {
     createStripeCheckout,
+    handleCrateStripePortal,
   }
 }

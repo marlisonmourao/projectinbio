@@ -1,6 +1,14 @@
+import { managerAuth } from '@/app/actions/manager-auth'
+import { auth } from '@/lib/auth'
 import { TrendingUp } from 'lucide-react'
+import { PortalButton } from './portal-button'
 
-export function TotalVisits({ totalVisits = 0 }: { totalVisits?: number }) {
+export async function TotalVisits({
+  totalVisits = 0,
+  showPortalButton = false,
+}: { totalVisits?: number; showPortalButton?: boolean }) {
+  const session = await auth()
+
   return (
     <div className="w-min whitespace-nowrap flex items-center gap-5 bg-background-secondary border border-border-primary px-8 py-3 rounded-xl shadow-lg">
       <span className="font-bold text-white">Total de visitas</span>
@@ -11,10 +19,15 @@ export function TotalVisits({ totalVisits = 0 }: { totalVisits?: number }) {
         <TrendingUp />
       </div>
 
-      {/* <div className="gap-2 flex items-center">
-        <button type="button">Portal</button>
-        <button type="button">Sair</button>
-      </div> */}
+      {showPortalButton && (
+        <div className="gap-2 flex items-center">
+          {session?.user.isSubscribed && <PortalButton />}
+
+          <form action={managerAuth}>
+            <button type="submit">Sair</button>
+          </form>
+        </div>
+      )}
     </div>
   )
 }
