@@ -5,11 +5,15 @@ import { verifyLink } from '@/app/actions/verify-link'
 import Button from '@/components/ui/button'
 import Input from '@/components/ui/input'
 import { sanitizeLink } from '@/lib/utils'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { type ChangeEvent, type FormEvent, useState } from 'react'
 
 export function CreateLinkForm() {
-  const [link, setLink] = useState('')
+  const searchParams = useSearchParams()
+
+  const linkUser = sanitizeLink(searchParams.get('link') ?? '')
+
+  const [link, setLink] = useState(linkUser)
   const [error, setError] = useState('')
 
   const router = useRouter()
@@ -48,7 +52,7 @@ export function CreateLinkForm() {
   return (
     <>
       <form onSubmit={handleSubmit} className="flex items-center w-full gap-2">
-        <span className="text-white">projectinbio.com/</span>
+        <span className="text-white">projectinbio.com</span>
 
         <Input onChange={handleLinkChange} value={link} />
         <Button className="w-[126px]">Criar</Button>
