@@ -10,7 +10,7 @@
     "env:load": "dotenv -e ./.env --"
   },
   "dependencies": {
-    "@auth/firebase-adapter": "^2.7.4",
+    "@auth/firebase-adapter": "^2.7.2",
     "@biomejs/biome": "^1.9.4",
     "@stripe/stripe-js": "^5.6.0",
     "@t3-oss/env-nextjs": "^0.12.0",
