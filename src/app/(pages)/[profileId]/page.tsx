@@ -5,9 +5,15 @@ import UserCard from '@/components/user-card/user-card'
 import { auth } from '@/lib/auth'
 import { getDownloadUrlFromPath } from '@/lib/firebase'
 import { getProfileData, getProfileProjects } from '@/server/get-profile-data'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import { NewProjects } from './new-projects'
+
+export const metadata: Metadata = {
+  title: 'ProjectInBio - Perfil',
+  description: 'ProjectInBio: Perfil',
+}
 
 export default async function ProfilePage({
   params,

@@ -1,6 +1,12 @@
 import { Header } from '@/components/lading-page/header'
 import { Rocket } from 'lucide-react'
+import type { Metadata } from 'next'
 import { CreateLinkForm } from './create-link-form'
+
+export const metadata: Metadata = {
+  title: 'ProjectInBio - Criar',
+  description: 'ProjectInBio: Criar',
+}
 
 export default function Criar() {
   return (
