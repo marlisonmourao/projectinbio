@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProjectInBio
 
-## Getting Started
+[![ProjectInBio Banner](./.github/assets/land-page.png)](link-para-o-seu-projeto)
 
-First, run the development server:
+## Seus projetos e redes sociais em um único link
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+O ProjectInBio é uma plataforma completa para centralizar seus projetos, redes sociais e informações de contato em um único link personalizado. Compartilhe tudo o que é importante com seus seguidores de forma fácil e organizada.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js:** Framework React para construção de interfaces web modernas e performáticas.
+- **Firebase:** Plataforma de desenvolvimento do Google com banco de dados, autenticação, armazenamento e outros serviços.
+- **Resend:** Serviço de envio de emails transacionais para notificações e confirmações.
+- **Stripe:** Plataforma de pagamentos online para processar assinaturas e doações.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Funcionalidades
 
-## Learn More
+- **Criação de Links Personalizados:** Crie links personalizados com sua marca e nome de usuário.
+- **Gerenciamento de Links:** Adicione, edite e organize seus links de projetos e redes sociais.
+- **Página de Perfil:** Crie uma página de perfil com sua foto, descrição e informações de contato.
+- **Integração com Redes Sociais:** Conecte suas contas de redes sociais para exibir seus perfis.
+- **Estatísticas de Acesso:** Acompanhe o número de cliques em seus links e obtenha insights sobre seu público.
+- **Autenticação com Google:** Faça login de forma rápida e segura com sua conta Google.
+- **Assinaturas e Doações:** Receba pagamentos de seus seguidores através do Stripe.
 
-To learn more about Next.js, take a look at the following resources:
+## Como Usar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Crie sua conta:** Acesse o ProjectInBio e crie sua conta gratuitamente.
+2. **Personalize seu link:** Escolha um nome de usuário e personalize seu link.
+3. **Adicione seus links:** Adicione seus links de projetos, redes sociais e informações de contato.
+4. **Compartilhe seu link:** Divulgue seu link em suas redes sociais, currículo ou onde mais desejar.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contato
 
-## Deploy on Vercel
+- **Email:** [bentesmoourao@gmail.com]
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Link em Produção
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Acesse a versão em produção do ProjectInBio através do seguinte link:
+
+[ProjectInBio - Produção](https://projectinbio-taupe.vercel.app/)
